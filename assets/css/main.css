@@ -165,6 +165,7 @@ footer {
 footer nav {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
+  column-gap: 0.4em;
   color: var(--tn-fg-dim);
 }
 
