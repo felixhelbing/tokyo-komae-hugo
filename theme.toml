@@ -1,0 +1,10 @@
+name = "tokyo-komae-hugo"
+license = "MIT"
+licenselink = "https://github.com/felixhelbing/tokyo-komae-hugo/blob/main/LICENSE.org"
+description = "A minimal, dark Hugo theme inspired by the Tokyo Night color palette."
+tags = ["minimal", "dark", "blog", "responsive"]
+features = ["dark mode", "custom fonts", "configurable footer"]
+
+[author]
+  name = "Felix Helbing"
+  homepage = "https://felixhelbing.de"

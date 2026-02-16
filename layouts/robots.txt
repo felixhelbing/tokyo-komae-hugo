@@ -1,0 +1,2 @@
+User-agent: *
+{{ with .Site.Params.robotsDisallow }}Disallow: {{ . }}{{ else }}Allow: /{{ end }}

@@ -1,0 +1,28 @@
+{{ range first 1 (where .Site.RegularPages "Date" "gt" (time.AsTime "0001-01-01")) }}
+<!DOCTYPE html>
+<html lang="{{ with .Params.language }}{{ . }}{{ else }}{{ .Site.LanguageCode }}{{ end }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+<main>
+  {{ partial "content.html" . }}
+</main>
+{{ else }}
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+<main>
+  <p>{{ .Site.Params.emptyHomeText | default "No posts yet." }}</p>
+</main>
+{{ end }}
+<footer>
+  {{ range .Site.Params.footer }}
+  <nav{{ if .class }} class="{{ .class }}"{{ end }}>{{ range $i, $link := .links }}{{ if $i }} · {{ end }}<a href="{{ $link.url }}"{{ if $link.external }} target="_blank" rel="noopener"{{ end }}>{{ $link.name }}</a>{{ end }}</nav>
+  {{ end }}
+</footer>
+</body>
+</html>

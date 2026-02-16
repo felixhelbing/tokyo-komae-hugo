@@ -1,0 +1,21 @@
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ .Title }}</title>
+  {{- $description := .Params.og_description | default .Site.Params.description | default .Title }}
+  <meta name="description" content="{{ $description }}" />
+  <link rel="canonical" href="{{ .Permalink }}" />
+  <meta property="og:title" content="{{ .Params.og_title | default .Title }}" />
+  <meta property="og:description" content="{{ $description }}" />
+  <meta property="og:url" content="{{ .Permalink }}" />
+  <meta property="og:type" content="{{ with .Params.og_type }}{{ . }}{{ else }}article{{ end }}" />
+  {{- with .Site.Params.og_site_name }}
+  <meta property="og:site_name" content="{{ . }}" />
+  {{- end }}
+  {{- with .Params.og_image | default .Site.Params.og_image }}
+  <meta property="og:image" content="{{ . | absURL }}" />
+  {{- end }}
+  {{ with fileExists "static/favicon.ico" }}{{ if . }}<link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="any" />{{ end }}{{ end }}
+  {{ with fileExists "static/favicon.svg" }}{{ if . }}<link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml" />{{ end }}{{ end }}
+  {{ with resources.Get "css/main.css" | resources.ExecuteAsTemplate "css/main.css" . | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" />
+  {{ end }}

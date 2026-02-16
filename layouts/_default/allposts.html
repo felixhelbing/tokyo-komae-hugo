@@ -1,0 +1,13 @@
+{{ define "main" }}
+<main class="by_date">
+  <h1><a href="{{ "/" | relURL }}">{{ .Title }}</a></h1>
+  {{ range ((where .Site.RegularPages "Date" "gt" (time.AsTime "0001-01-01")).GroupByDate "2006-01") }}
+  <h2>{{ .Key }}</h2>
+  <ul>
+    {{ range .Pages }}
+    <li><span>{{ .PublishDate.Format "02" }}</span><a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a></li>
+    {{ end }}
+  </ul>
+  {{ end }}
+</main>
+{{ end }}
