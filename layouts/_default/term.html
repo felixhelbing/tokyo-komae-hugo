@@ -2,15 +2,15 @@
 <main>
   {{ $term := .Data.Term }}
   {{ $taxonomy := .Data.Plural }}
-  {{ $display := $term }}
+  {{ .Scratch.Set "display" $term }}
   {{ range first 1 .Pages }}
     {{ range index .Params $taxonomy }}
       {{ if eq (lower .) (lower $term) }}
-        {{ $display = . }}
+        {{ $.Scratch.Set "display" . }}
       {{ end }}
     {{ end }}
   {{ end }}
-  <h1>{{ $display }}</h1>
+  <h1>{{ .Scratch.Get "display" }}</h1>
   <ul>
     {{ range .Pages }}
     <li><a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a></li>
