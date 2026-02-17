@@ -1,18 +1,18 @@
 {{ define "main" }}
 <main>
-  {{ $term := .Data.Term }}
-  {{ $taxonomy := .Data.Plural }}
-  {{ .Scratch.Set "display" $term }}
-  {{ range first 1 .Pages }}
+  {{ $pages := .Pages }}
+  {{ $display := .Data.Term }}
+  {{ range first 1 $pages }}
+    {{ $taxonomy := $.Data.Plural }}
     {{ range index .Params $taxonomy }}
-      {{ if eq (lower .) (lower $term) }}
-        {{ $.Scratch.Set "display" . }}
+      {{ if eq (lower .) (lower $display) }}
+        {{ $display = . }}
       {{ end }}
     {{ end }}
   {{ end }}
-  <h1>{{ .Scratch.Get "display" }}</h1>
+  <h1>{{ $display }}</h1>
   <ul>
-    {{ range .Pages }}
+    {{ range $pages }}
     <li><a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a></li>
     {{ end }}
   </ul>
