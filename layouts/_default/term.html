@@ -1,19 +1,21 @@
 {{ define "main" }}
 <main>
-  {{ $pages := .Pages }}
+  {{ $taxonomy := .Data.Plural }}
+  {{ $term := lower .Data.Term }}
+  {{ $terms := index site.Taxonomies $taxonomy }}
+  {{ $termPages := index $terms $term }}
   {{ $display := .Data.Term }}
-  {{ range first 1 $pages }}
-    {{ $taxonomy := $.Data.Plural }}
-    {{ range index .Params $taxonomy }}
-      {{ if eq (lower .) (lower $display) }}
+  {{ range first 1 $termPages }}
+    {{ range index .Page.Params $taxonomy }}
+      {{ if eq (lower .) $term }}
         {{ $display = . }}
       {{ end }}
     {{ end }}
   {{ end }}
   <h1>{{ $display }}</h1>
   <ul>
-    {{ range $pages }}
-    <li><a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a></li>
+    {{ range $termPages }}
+    <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title | markdownify }}</a></li>
     {{ end }}
   </ul>
 </main>
