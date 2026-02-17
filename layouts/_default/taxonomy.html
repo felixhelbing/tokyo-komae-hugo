@@ -2,8 +2,8 @@
 <main>
   <h1>{{ .Title }}</h1>
   <ul>
-    {{ range .Pages }}
-    <li><a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a></li>
+    {{ range .Data.Terms.Alphabetical }}
+    <li><a href="{{ .Page.RelPermalink }}">{{ .Name }}</a></li>
     {{ end }}
   </ul>
 </main>
