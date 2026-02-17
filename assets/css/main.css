@@ -157,24 +157,11 @@ a:focus-visible {
 footer {
   margin-top: 3rem;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-footer nav {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  column-gap: 0.4em;
   color: var(--tn-fg-dim);
 }
 
-footer nav a:first-child {
-  text-align: right;
-}
-
-footer nav a:last-child {
-  text-align: left;
+footer .sep {
+  margin: 0 0.4em;
 }
 
 /* Code Font */

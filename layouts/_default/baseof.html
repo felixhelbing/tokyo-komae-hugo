@@ -6,9 +6,7 @@
 <body>
 {{ block "main" . }}{{ end }}
 <footer>
-  {{ range .Site.Params.footer }}
-  <nav{{ if .class }} class="{{ .class }}"{{ end }}>{{ range $i, $link := .links }}{{ if $i }} · {{ end }}<a href="{{ $link.url }}"{{ if $link.external }} target="_blank" rel="noopener"{{ end }}>{{ $link.name }}</a>{{ end }}</nav>
-  {{ end }}
+  <nav>{{ $first := true }}{{ range .Site.Params.footer }}{{ range .links }}{{ if not $first }}<span class="sep">·</span>{{ end }}<a href="{{ .url }}"{{ if .external }} target="_blank" rel="noopener"{{ end }}>{{ .name }}</a>{{ $first = false }}{{ end }}{{ end }}</nav>
 </footer>
 </body>
 </html>
