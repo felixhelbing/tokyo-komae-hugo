@@ -5,8 +5,6 @@
 </head>
 <body>
 {{ block "main" . }}{{ end }}
-<footer>
-  <nav>{{ $first := true }}{{ range .Site.Params.footer }}{{ range .links }}{{ if not $first }}<span class="sep">·</span>{{ end }}<a href="{{ .url }}"{{ if .external }} target="_blank" rel="noopener"{{ end }}>{{ .name }}</a>{{ $first = false }}{{ end }}{{ end }}</nav>
-</footer>
+{{ partial "footer.html" . }}
 </body>
 </html>

@@ -19,10 +19,6 @@
   <p>{{ .Site.Params.emptyHomeText | default "No posts yet." }}</p>
 </main>
 {{ end }}
-<footer>
-  {{ range .Site.Params.footer }}
-  <nav{{ if .class }} class="{{ .class }}"{{ end }}>{{ range $i, $link := .links }}{{ if $i }} · {{ end }}<a href="{{ $link.url }}"{{ if $link.external }} target="_blank" rel="noopener"{{ end }}>{{ $link.name }}</a>{{ end }}</nav>
-  {{ end }}
-</footer>
+{{ partial "footer.html" . }}
 </body>
 </html>
