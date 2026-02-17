@@ -3,6 +3,6 @@
   <p><a href="{{ .Permalink }}">Permalink</a> · <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>{{ with .Params.author }} · {{ . }}{{ end }}</p>
 {{ end }}
 {{ with .Params.tags }}
-  <p>{{ range $i, $tag := . }}{{ if $i }} · {{ end }}<a href="{{ printf "/tags/%s/" $tag | relURL }}">{{ $tag }}</a>{{ end }}</p>
+  <p>{{ range $i, $tag := . }}{{ if $i }} · {{ end }}<a href="{{ printf "/tags/%s/" (urlize $tag) | relURL }}">{{ $tag }}</a>{{ end }}</p>
 {{ end }}
 {{ .Content }}
