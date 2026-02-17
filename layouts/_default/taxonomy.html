@@ -2,8 +2,17 @@
 <main>
   <h1>{{ .Title }}</h1>
   <ul>
+    {{ $taxonomy := .Data.Plural }}
     {{ range .Data.Terms.Alphabetical }}
-    <li><a href="{{ .Page.RelPermalink }}">{{ .Name }}</a></li>
+    {{ $display := .Name }}
+    {{ range first 1 .Pages }}
+      {{ range index .Params $taxonomy }}
+        {{ if eq (lower .) (lower $display) }}
+          {{ $display = . }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+    <li><a href="{{ .Page.RelPermalink }}">{{ $display }}</a></li>
     {{ end }}
   </ul>
 </main>
